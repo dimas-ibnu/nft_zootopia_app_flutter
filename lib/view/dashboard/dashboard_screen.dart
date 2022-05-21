@@ -26,7 +26,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
           SizedBox(height: 40),
           _menuLabel("Top Collections"),
           SizedBox(height: 20),
-          _slider
+          _slider,
+          SizedBox(height: 40),
+          _menuLabel("Featured Creator"),
+          SizedBox(height: 18),
+          _listFeaturedCreator
         ]).paddingSymmetric(horizontal: 26, vertical: 20),
       ),
     );
@@ -48,7 +52,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   Widget _itemSlider() {
     return SizedBox(
-        width: 320,
+        width: 330,
         height: 250,
         child: Stack(
           children: [
@@ -65,9 +69,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
             Align(
                 alignment: Alignment.centerRight,
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                   height: 200,
-                  width: 150,
+                  width: 170,
                   decoration: BoxDecoration(
                       color: ThemeColor.mainColor,
                       borderRadius: BorderRadius.circular(16)),
@@ -209,5 +213,44 @@ class _DashboardScreenState extends State<DashboardScreen> {
         imagePath: 'assets/images/user3.png',
       )
     ]).paddingOnly(top: 30);
+  }
+
+  Widget get _listFeaturedCreator {
+    return Column(
+      children: [
+        _creatorItem("Gozali Standford", 11, 'assets/images/user1.png'),
+        _creatorItem("Carla Standley", 82, 'assets/images/user2.png'),
+        _creatorItem("Dimas Ibnu Malik", 82, 'assets/images/user1.png'),
+      ],
+    );
+  }
+
+  Widget _creatorItem(String name, int followers, String imagePath) {
+    return Row(
+      children: [
+        CustomCircleAvatar(
+            imagePath: imagePath, shadow: BoxShadow()),
+        SizedBox(width: 20),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              name,
+              style: ThemeTextStyle.sharpBold.copyWith(fontSize: 16),
+            ),
+            SizedBox(height: 5),
+            Text("${followers}K Followers",
+                style: ThemeTextStyle.sharpReguler.copyWith(fontSize: 12)),
+          ],
+        ),
+        Spacer(),
+        ActionButtonWidget(
+          onTap: () {},
+          child: Text("Follow", style: ThemeTextStyle.sharpBold,),
+          size: 100,
+        )
+      ],
+    ).paddingOnly(bottom: 20);
   }
 }

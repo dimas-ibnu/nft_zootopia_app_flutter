@@ -14,7 +14,9 @@ class CustomCircleAvatar extends StatelessWidget {
       height: 49,
       width: 49,
       decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage(imagePath)),
+          image: DecorationImage(fit: BoxFit.contain,
+            
+            image: AssetImage(imagePath)),
           shape: BoxShape.circle,
           color: color ?? ThemeColor.mainColor,
           boxShadow: [
